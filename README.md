@@ -1,6 +1,6 @@
 # Apartment-Webpage-Monitor
 
-My first full working scripts and upload to GitHub.
+My first full working script and upload to GitHub.
 
 The script is used to monitor an apartment rental website and send an email when the number of propertry listings has been updated. 
 
