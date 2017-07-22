@@ -7,6 +7,9 @@
 # script working you will probably need to start a new project which 
 # creates the items.py file and other neccessary components.
 #
+# Run from terminal with $ scrapy crawl items -o test.csv
+# "items" = name of spider, "-o test.csv" writes our output
+#
 # Author: McGregor Drummond
 # Date: 18 July 2017
 # Working: 22 July 2017
@@ -52,11 +55,12 @@ class ItemsSpider(scrapy.Spider):
         # find the strings/values and assign them to their respective fields
         item['Title'] = jsonresponse.get('title').split()[1]
         item['Weight'] = jsonresponse.get('title').split()[3]
-        item['Calories'] = table[header_iloc[0]+3] 
         
         for i in range(len(headers)): # loop around headers to create nutrient fields
             item[headers_eng[i]] = table[header_iloc[i]+1] 
        
+        item['Calories'] = table[header_iloc[0]+3] 
+
         yield item
 
 # Example .csv output (any suggestions as to why the title order is wrong please let me know!)
