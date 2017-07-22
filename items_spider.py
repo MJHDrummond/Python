@@ -53,8 +53,9 @@ class ItemsSpider(scrapy.Spider):
         item = AlbertItem() # call on our function inside items.py
         
         # find the strings/values and assign them to their respective fields
-        item['Title'] = jsonresponse.get('title').split()[1]
-        item['Weight'] = jsonresponse.get('title').split()[3]
+        item['Title'] = jsonresponse.get('_embedded').get('lanes')[4].get('_embedded').get('items')[0].get('_embedded').get('product').get('images')[0].get('title')
+        item['Weight'] = jsonresponse.get('_embedded').get('lanes')[4].get('_embedded').get('items')[0].get('_embedded').get('product').get('unitSize').split()[-2]
+        item['Price'] = jsonresponse.get('_embedded').get('lanes')[4].get('_embedded').get('items')[0].get('_embedded').get('product').get('priceLabel').get('now')
         
         for i in range(len(headers)): # loop around headers to create nutrient fields
             item[headers_eng[i]] = table[header_iloc[i]+1] 
