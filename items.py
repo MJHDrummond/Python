@@ -17,6 +17,7 @@ class AlbertItem(scrapy.Item):
     # name = scrapy.Field()
     Title = scrapy.Field()
     Weight = scrapy.Field()
+    Price = scrapy.Field()
     Calories = scrapy.Field()
     Protein = scrapy.Field()
     Carbs = scrapy.Field()
