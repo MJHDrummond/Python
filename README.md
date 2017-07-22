@@ -1,7 +1,7 @@
 # Apartment-Webpage-Monitor
-Project start date: 15 July 2017.
-
-Uploaded/working: 17 July 2017.
+- Project start date: 15 July 2017.
+- Uploaded/working: 17 July 2017.
+#
 
 My first fully working Python script and upload to GitHub.
 
