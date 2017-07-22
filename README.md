@@ -4,7 +4,7 @@
 - Multiple product script:
 - Full supermarket database:
 
-
+# 
 
 This project is geared towards learning how to scrape data from a website. I chose the [Albert Heijn](https://www.ah.nl/producten) website as we shop there and it will be useful to quickly compare prices and nutritional information of the products. This has been a steep learning curve as I began self-learning Python at the start of July but perseverance has paid off.
 
