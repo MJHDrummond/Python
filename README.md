@@ -1,7 +1,6 @@
 # Supermarket-Scraper
-Project start date: 18 July 2017.
-
-Single product script uploaded/working: 22 July 2017.
+-Project start date: 18 July 2017.
+-Single product script uploaded/working: 22 July 2017.
 
 
 
