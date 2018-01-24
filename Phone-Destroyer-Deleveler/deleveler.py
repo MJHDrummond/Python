@@ -15,6 +15,7 @@
 # Author: McGregor Drummond
 # Date: 20 January 2018
 # Working: 21 January 2018
+# Updated: 24 January 2018
 #
 ##########################################################################
 
@@ -41,7 +42,7 @@ def clickButton(buttonLocation):
 def beginBattle():
 
     # input begin battle button image
-    im1 = 'beginBattleButtonOriginal.png'
+    im1 = 'beginBattleButtonOriginal.png'  # using 'T' in 'BATTLE' to increase chances of finding the button
     counter = 0  # counter used to track number of button search attempts
     while True:
         try:
@@ -52,16 +53,20 @@ def beginBattle():
                 clickButton(beginBattleLocate)
                 print('Start battle successful, waiting 120s before next search...')  # losing matches typically 2 mins
                 time.sleep(120)
-                break
+                return True  # returns True = function successful
             elif counter == 5:  # if button not found after 5 attempts then break loop and search for another button
                 print('Begin battle button not found, trying next button search.')
-                break
+                global globalCounter # call the global keyword to update number of overall fails without having to return variables
+                globalCounter += 1
+                return False
             else:  # if button not found, retry
                 print('Button not found, retrying...')
                 counter += 1
 
         except TypeError as e:
             print('Failed with error: ', e)
+            globalCounter += 1
+            return False
 
 
 # create function for finding the opponent left button
@@ -69,6 +74,7 @@ def beginBattle():
 def opponentLeftScreen():
 
     # input opponent left button
+    # im1 = takeOppoLeftScreenshot()
     im1 = 'opponentLeftButtonOriginal.png'
     counter = 0  # counter used to track the number of button search attempts
     while True:
@@ -80,25 +86,47 @@ def opponentLeftScreen():
                 clickButton(oppoLeftButtonLocation)
                 print('Escaped opponent left screen, beginning search for start battle button...')
                 time.sleep(10)  # wait 10 seconds after finding the button to account for loading screens
-                break
-            elif counter == 5:  # if button not found after 5 attempts then break loop and search for another button
+                return True  # returns True = function successful
+            elif counter == 2:  # if button not found after 2 attempts then break loop and search for another button
                 print('Opponent left button not found, trying next button search.')
-                break
+                global globalCounter  # call the global keyword to update number of overall fails without having to return variables
+                globalCounter += 1
+                return False
             else:  # if button not found, retry
                 print('Button not found, retrying...')
                 counter += 1
 
         except TypeError as e:
             print('Failed with error: ', e)
+            globalCounter += 1
+            return False
 
+# create function call to check if the required pvp rank has been reached then stop the script
+def rankLimiter():
 
+    im1 = 'pvpRank20Image.png'
+    if pyautogui.locateOnScreen(im1) is not None:
+        print('Minimum pvp rank reached, stopping script.')
+        quit()
+        
+        
 # create function to call the button search functions
 # will add counter feature here so that it is not an infinite loop and to break after so many failed attempts
 def main():
-    while True:
-       beginBattle()
-       opponentLeftScreen()
 
+    global globalCounter
+    globalCounter = 0  # used to track the number of overall failed search attempts within the functions
+    while True:
+        rankLimiter()  # first check if minimum rank reached
+        if beginBattle() is True:
+            globalCounter = 0  # reset failed attempts counter after a successful button click
+            continue  # if begin battle successful, return to start of loop
+        elif opponentLeftScreen() is True:
+            globalCounter = 0  # reset failed attempts counter after a successful button click
+            continue  # if opponent left screen escape successful, return to start of loop
+        elif globalCounter == 6:  # each function gets 3 attempts at finding the button otherwise stop the script
+            print('Button search has reached maximum attempts, stopping script.')
+            quit()
 
 # call main function to start the script
 main()
