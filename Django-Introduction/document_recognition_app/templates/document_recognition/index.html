@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document Recognition App</title>
+</head>
+<body style="background-color:powderblue;">
+
+    <h1>Welcome to the Document Recognition App.</h1>
+    <br><br>
+
+    <form action="{% url 'process-file' %}" id="file-upload-form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.file.label_tag }} {{ form.file }}
+        {{ form.title.as_hidden }}
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <br>
+    {% if reader %}
+        <pre>{{ reader }}</pre>
+    {% endif %}
+
+</body>
+</html>
+
+

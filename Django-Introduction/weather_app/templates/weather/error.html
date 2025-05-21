@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+</head>
+<body style="background-color:powderblue;">
+    <h1>An error occurred</h1>
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% else %}
+        <p>An unexpected error occurred.</p>
+    {% endif %}
+</body>
+</html>

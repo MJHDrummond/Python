@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Details</title>
+</head>
+<body style="background-color:powderblue;">
+    <h1>Welcome to the Weather Details.</h1>
+    {% if weather %}
+        <p>Datetime: {{ weather.datetime }}</p>
+        <p>Temperature: {{ weather.temperature }}C</p>
+        <p>Precipitation: {{ weather.precipitation }}mm</p>
+        <p>Weather Station: {{ weather.weather_station }}</p>
+    {% else %}
+        <p>No weather details are available.</p>
+    {% endif %}
+</body>
+</html>

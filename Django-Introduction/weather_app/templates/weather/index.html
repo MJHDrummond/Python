@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Overview</title>
+</head>
+<body style="background-color:powderblue;">
+    <h1>Welcome to the Weather Overview.</h1>
+    {% if latest_weather_list %}
+        <ul>
+        {% for weather in latest_weather_list %}
+            <li><a href="{% url 'detail' weather.id %}">Weather at {{ weather.datetime }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No weather is available.</p>
+    {% endif %}
+
+    <h3><a href="{% url 'get-latest-weather' %}">Get latest weather</a></h3>
+</body>
+</html>
+
+
