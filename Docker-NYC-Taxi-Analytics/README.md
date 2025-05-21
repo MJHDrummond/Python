@@ -11,4 +11,4 @@
 In this project I used Docker to build an ingestion and analysis application for New York City Taxi data.
 PostgreSQL was used to save the ingested dataset.
 
-(Dataset)[https://github.com/DataTalksClub/nyc-tlc-data/releases/tag/yellow]
+Dataset: https://github.com/DataTalksClub/nyc-tlc-data/releases/tag/yellow
